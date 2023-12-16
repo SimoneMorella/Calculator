@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #1C1C1C;
+    --ctrl-color: #D4D4D2;
+    --num-color: #505050;
+    --op-color: #FF9500;
+}
+
+* {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* border: 0.5px solid red; */
+    color: whitesmoke;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+header {
+    font-size: 72px;
+    font-weight: bold;
+    padding: 10px;
+    color: var(--op-color);
+}
+
+.calculator {
+    height: 650px;
+    width: 400px;
+    border: 3px solid whitesmoke;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.calculator .display {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator .display .upperdisplay {
+    height: 35%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.calculator .display .resultdisplay {
+    height: 65%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    font-size: 64px;
+    padding:0 10px 10px 0;
+}
+
+.calculator .btngrid {
+    height: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.calculator .btngrid .btn {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: var(--num-color);
+    font-size: 32px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: 0.3s;
+}
+
+.calculator .btngrid .btn:hover {
+    transform: scale(1.1);
+}
+
+.calculator .btngrid .btn.ctrlbtn {
+    background-color: var(--ctrl-color);
+    color: var(--num-color);
+}
+
+.calculator .btngrid .btn.opbtn {
+    background-color: var(--op-color);
+    padding-bottom: 6px;
+}
+
+.calculator .btngrid .btn.opbtn:active,
+.calculator .btngrid .btn.opbtn:hover {
+    color: var(--op-color);
+    background-color: whitesmoke;
+}
+
+.calculator .btngrid .btn.numbtn:hover,
+.calculator .btngrid.btn.numbtn:active {
+    background-color: #bebebe;
+}
+
+.calculator .btngrid .btn#zero {
+    width: 165px;
+    border-radius: 50px;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+footer {
+    font-size: 21px;
+    padding: 10px;
+}
+
+footer a i{
+    transition: 0.5s;
+    color: white;
+}
+
+footer a i:hover {
+    transform: rotate(20deg);
+}
+
+
+
+
+
