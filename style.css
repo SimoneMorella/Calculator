@@ -82,6 +82,7 @@ header {
     justify-content: center;
     align-items: center;
     border: none;
+    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -99,14 +100,12 @@ header {
     padding-bottom: 6px;
 }
 
-.calculator .btngrid .btn.opbtn:active,
 .calculator .btngrid .btn.opbtn:hover {
     color: var(--op-color);
     background-color: whitesmoke;
 }
 
-.calculator .btngrid .btn.numbtn:hover,
-.calculator .btngrid.btn.numbtn:active {
+.calculator .btngrid .btn.numbtn:hover {
     background-color: #bebebe;
 }
 
@@ -115,6 +114,13 @@ header {
     border-radius: 50px;
     justify-content: flex-start;
     padding-left: 30px;
+}
+
+.calculator .btngrid .btn.numbtn:active, 
+.calculator .btngrid .btn.ctrlbtn:active, 
+.calculator .btngrid .btn.opbtn:active {
+background-color: #dad9d9;
+border-radius: 25px;
 }
 
 footer {
