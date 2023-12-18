@@ -5,80 +5,68 @@ let opBtn = document.querySelectorAll(".btn.opbtn");
 let equalBtn = document.querySelector("#equal");
 const allClearBtn = document.querySelector("#allClear");
 const clearBtn = document.querySelector("#clear");
-let firstNum = "";
-let operator = "";
-let secondNum = "";
+const decimalBtn = document.querySelector("#decimal");
 let opArray = ["+", "-", "×", "÷"];
-
-// cose da fare
-// sistemare il risultato operate e farlo uscire in resultDisplay FATTO
-// se ci sta un qualcosa in resultDisplay allora se premo un operator mi fa l'operator su quello, e se premo un nuovo numero l'upper display si resetta FATTO
-// sistemare decimali
-// sistemare il punto
-// sistemare il C tasto
-
+let calculationResult = false;
 
 numbersBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-        if (resultDisplay.textContent) {
-            allClear();
+        if (calculationResult) {
+            clearAll()
+            calculationResult = false;
         }
-        if (!opArray.some((operator) => upperDisplay.textContent.includes(operator))) {
-            firstNum += e.target.textContent;
-            upperDisplay.textContent = firstNum;
-        }
-        else if (opArray.some((operator) => upperDisplay.textContent.includes(operator))) {
-            secondNum += e.target.textContent;
-            upperDisplay.textContent += e.target.textContent;
-        }
+        resultDisplay.textContent += e.target.textContent;
     })
 })
 
 opBtn.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-
-        if ((!opArray.some((operator) => upperDisplay.textContent.includes(operator))) && e.target.textContent !== "=") {
-            if (upperDisplay.textContent) {
-                operator = e.target.textContent;
-                upperDisplay.textContent += " " + e.target.textContent + " ";
-            }
+        if (e.target.textContent !== "=" && upperDisplay.textContent === '') {
+            upperDisplay.textContent = `${resultDisplay.textContent} ${e.target.textContent} `;
+            resultDisplay.textContent = '';
         }
         else if (e.target.textContent !== "=") {
-            if (resultDisplay.textContent) {
-                upperDisplay.textContent = "";
-                firstNum = resultDisplay.textContent;
-                operator = e.target.textContent;
-                upperDisplay.textContent = `${firstNum} ${e.target.textContent} `;
+            equalBtn.click();
+            upperDisplay.textContent = `${resultDisplay.textContent} ${e.target.textContent} `;
+            if (calculationResult) {
                 resultDisplay.textContent = '';
-                secondNum = '';
+                calculationResult = false;
             }
         }
     })
 })
 
 equalBtn.addEventListener("click", () => {
-    resultDisplay.textContent = operate(operator, firstNum, secondNum);
+    upperDisplay.textContent += resultDisplay.textContent;
+    let equationArray = upperDisplay.textContent.split(" ");
+    let calculation = {
+        firstNumber : equationArray[0],
+        operationSymbol : equationArray[1],
+        secondNumber : equationArray[2],
+    }
+    resultDisplay.textContent = operate(calculation.operationSymbol, calculation.firstNumber, calculation.secondNumber);
+    calculationResult = true;
 })
 
 clearBtn.addEventListener("click", () => {
-    
+    // con calculationResult si non cancella, con no cancella
     upperDisplay.textContent = upperDisplay.textContent.slice(0, -1);
 })
 
 allClearBtn.addEventListener("click", () => {
-    allClear();
+    clearAll();
 })
 
-function allClear() {
+function clearAll() {
     upperDisplay.textContent = "";
     resultDisplay.textContent = "";
-    firstNum = '';
-    secondNum = '';
-    operator = '';
 }
 
 function operate(op, a, b) {
     let result;
+    if (b === undefined) {
+        return a;
+    }
     switch(op) {
         case "+":
             result = addition(a,b);
