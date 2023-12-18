@@ -52,6 +52,8 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: end;
+    font-size: 32px;
+    padding-right: 10px;
 }
 
 .calculator .display .resultdisplay {
@@ -59,7 +61,7 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: end;
-    font-size: 64px;
+    font-size: 60px;
     padding:0 10px 10px 0;
 }
 
@@ -137,7 +139,44 @@ footer a i:hover {
     transform: rotate(20deg);
 }
 
+@media (max-width: 456px) {
+    header {
+        font-size: 56px;
+    }
 
+    footer {
+        font-size: 18px;
+    }
+
+    .calculator {
+        height: 500px;
+        width: 300px;
+        padding: 12px;
+    }
+
+    .calculator .display .upperdisplay {
+        font-size: 24px;
+    }
+
+    .calculator .display .resultdisplay {
+        font-size: 46px;
+    }
+
+    .calculator .btngrid {
+        gap: 3px;
+    }
+
+    .calculator .btngrid .btn {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .calculator .btngrid .btn#zero {
+        width: 125px;
+        padding-left: 20px;
+    }
+}
 
 
 
